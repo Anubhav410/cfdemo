@@ -1,1 +1,10 @@
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/psql/PSQLConnector.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/psql/PSQLRecordProcessor.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/demo/Configs.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/psql/BaseSourceConfig.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/psql/PostgresSourceConfig.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/demo/Connector.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/DebeziumConstants.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/psql/PostgresConstants.java
+/Users/anubhavshrivastava/code/cf_demo/src/main/java/connectors/debezium/psql/JDBCSourceConfig.java
 /Users/anubhavshrivastava/code/cf_demo/src/main/java/demo/Main.java

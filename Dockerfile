@@ -2,7 +2,7 @@
 FROM maven:3.8.3-openjdk-8 AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package
+RUN JAVA_HOME=/opt/homebrew/opt/java11/bin/java mvn -f /home/app/pom.xml clean package
 
 # Use AdoptOpenJDK for the runtime image.
 FROM adoptopenjdk:8-jre-hotspot

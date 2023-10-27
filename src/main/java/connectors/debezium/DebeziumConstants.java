@@ -24,7 +24,7 @@ public class DebeziumConstants {
   public static final String REPLICATION_SLOT_NAME_CONFIG = "slot.name";
 
   public static final String FLUSH_LSN_CONFIG = "flush.lsn.source";
-  public static final String FLUSH_LSN_CONFIG_VALUE = "false";
+  public static final String FLUSH_LSN_CONFIG_VALUE = "true";
 
   public static final String OUTPUT_PLUGIN_NAME_CONFIG = "plugin.name";
   public static final String PUBLICATION_NAME_CONFIG = "publication.name";

@@ -1,6 +1,7 @@
 package demo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import connectors.debezium.psql.PSQLConnector;
 import connectors.debezium.psql.PostgresSourceConfig;
 
 import java.io.IOException;
@@ -26,11 +27,11 @@ public class Main {
             System.exit(1);
         }
         // This is a simple connector
-        new Connector(workflowID, integrationID, configs, Long.parseLong(waitTime)).run();
+//        new Connector(workflowID, integrationID, configs, Long.parseLong(waitTime)).run();
 
         // This is Debezium Connector
 
-//        new PSQLConnector(getTestPostgresConfig()).run();
+        new PSQLConnector(getTestPostgresConfig()).run();
 
     }
 

@@ -1,2 +1,15 @@
-demo/Main$Configs.class
+connectors/debezium/psql/PSQLConnector.class
+demo/Configs.class
+connectors/debezium/psql/BaseSourceConfig.class
+connectors/debezium/psql/PostgresSourceConfig.class
+demo/Configs$SourceConfig.class
+demo/Connector.class
+demo/Configs$AuthConfig.class
+connectors/debezium/psql/PostgresConstants.class
+connectors/debezium/psql/JDBCSourceConfig.class
+demo/Configs$OrchestratorConfig.class
+demo/Configs$HeartBeatConfig.class
 demo/Main.class
+connectors/debezium/psql/PSQLRecordProcessor.class
+connectors/debezium/DebeziumConstants.class
+demo/Connector$StopConnector.class

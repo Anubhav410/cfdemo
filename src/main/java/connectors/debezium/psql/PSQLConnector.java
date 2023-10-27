@@ -61,7 +61,7 @@ public class PSQLConnector {
                 DebeziumConstants.DATABASE_PASSWORD_CONFIG, postgresSourceConfig.getDBPassword());
         properties.setProperty(
                 DebeziumConstants.DATABASE_NAME_CONFIG, postgresSourceConfig.getDBName());
-        properties.setProperty(DebeziumConstants.INCLUDED_TABLES_CONFIG, "test_table_1");
+        properties.setProperty(DebeziumConstants.INCLUDED_TABLES_CONFIG, "test_table_2");
 
         properties.setProperty(
                 DebeziumConstants.REPLICATION_SLOT_NAME_CONFIG,

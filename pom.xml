@@ -9,12 +9,22 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
         <!-- Add your dependencies here -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.0</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -25,26 +35,26 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <artifactId>debezium-api</artifactId>-->
-<!--            <groupId>io.debezium</groupId>-->
-<!--            <version>2.3.2.Final</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <artifactId>debezium-embedded</artifactId>-->
-<!--            <groupId>io.debezium</groupId>-->
-<!--            <version>2.3.2.Final</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <artifactId>debezium-connector-postgres</artifactId>-->
-<!--            <groupId>io.debezium</groupId>-->
-<!--            <version>2.3.2.Final</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <artifactId>logback-classic</artifactId>-->
-<!--            <groupId>ch.qos.logback</groupId>-->
-<!--            <version>1.4.11</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <artifactId>debezium-api</artifactId>
+            <groupId>io.debezium</groupId>
+            <version>2.3.2.Final</version>
+        </dependency>
+        <dependency>
+            <artifactId>debezium-embedded</artifactId>
+            <groupId>io.debezium</groupId>
+            <version>2.3.2.Final</version>
+        </dependency>
+        <dependency>
+            <artifactId>debezium-connector-postgres</artifactId>
+            <groupId>io.debezium</groupId>
+            <version>2.3.2.Final</version>
+        </dependency>
+        <dependency>
+            <artifactId>logback-classic</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <version>1.4.11</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
