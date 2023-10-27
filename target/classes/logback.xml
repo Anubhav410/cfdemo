@@ -1,0 +1,30 @@
+<!-- https://logback.qos.ch/manual/layouts.html#conversionWord refer this for pattern -->
+
+<configuration scan="true">
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
+    <encoder>
+      <pattern>[%date{ISO8601}] [%p] [%t] [integrationId:%mdc{integrationId}]
+        [processId:%mdc{processId}] [%logger:%L] - %m %xEx%n
+      </pattern>
+    </encoder>
+  </appender>
+  
+  <appender class="ch.qos.logback.core.FileAppender" name="DZFILE">
+    <append>true</append>
+    <encoder>
+      <pattern>[%date{ISO8601}] [%p] [%t] [integrationId:%mdc{integrationId}]
+        [processId:%mdc{processId}] [%logger:%L] - %m %xEx%n
+      </pattern>
+    </encoder>
+    <file>dz.log</file>
+    <!--     <filter class="ch.qos.logback.classic.filter.ThresholdFilter"> -->
+    <!--       <level>INFO</level> -->
+    <!--     </filter> -->
+    <immediateFlush>true</immediateFlush>
+  </appender>
+  
+  <root level="debug">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="DZFILE"/>
+  </root>
+</configuration>

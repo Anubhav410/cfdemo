@@ -1,0 +1,19 @@
+
+7
+java:S1220""Move this file to a named package.8ÖøÙ¶1
+]
+java:S1854";Remove this useless assignment to local variable "configs".(¢„™Íøÿÿÿÿ8íøÙ¶1
+^
+java:S1854"ARemove this useless assignment to local variable "integrationID".(ù²ÔÂ8íøÙ¶1
+[
+java:S1854">Remove this useless assignment to local variable "workflowID".(í–çø8íøÙ¶1
+L	java:S106"+Replace this use of System.out by a logger.(É€ƒ´ûÿÿÿÿ8îøÙ¶1
+L
+java:S1481"/Remove this unused "workflowID" local variable.(í–çø8òøÙ¶1
+O
+java:S1481"2Remove this unused "integrationID" local variable.(ù²ÔÂ8óøÙ¶1
+N
+java:S1481",Remove this unused "configs" local variable.(¢„™Íøÿÿÿÿ8ôøÙ¶1
+G	java:S106."+Replace this use of System.out by a logger.(›ıÂé8øÙ¶1
+G	java:S1063"+Replace this use of System.out by a logger.(Ğååæ8øÙ¶1
+F	java:S1068"+Replace this use of System.out by a logger.(¼‘ßf8‘øÙ¶1
