@@ -11,7 +11,9 @@ public class PSQLRecordProcessor implements DebeziumEngine.ChangeConsumer<Record
 
     @Override
     public void handleBatch(List<RecordChangeEvent<SourceRecord>> list, DebeziumEngine.RecordCommitter<RecordChangeEvent<SourceRecord>> recordCommitter) throws InterruptedException {
-        System.out.println("I have some event!!!!!!!!!!");
+        System.out.println("****************Processing Event****************");
+        System.out.println(list);
+        System.out.println("****************Event Processed****************");
     }
 
     @Override

@@ -1,45 +1,48 @@
 package connectors.debezium.psql;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import connectors.BaseConnector;
 import connectors.debezium.DebeziumConstants;
+import demo.Configs;
 import io.debezium.embedded.Connect;
 import io.debezium.engine.DebeziumEngine;
 import io.debezium.engine.RecordChangeEvent;
 import io.debezium.engine.format.ChangeEventFormat;
 import org.apache.kafka.connect.source.SourceRecord;
 
+import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
 
-public class PSQLConnector {
+public class PSQLConnector extends BaseConnector {
     private static final String DEBEZIUM_POSTGRES_CONNECTOR_NAME_CONFIG_VALUE = "postgres-connector";
     private static final String DEBEZIUM_POSTGRES_CONNECTOR_CLASS_NAME_CONFIG_VALUE =
             "io.debezium.connector.postgresql.PostgresConnector";
 
     protected final PostgresSourceConfig postgresSourceConfig;
+    protected DebeziumEngine<RecordChangeEvent<SourceRecord>> engine;
 
-    public PSQLConnector(PostgresSourceConfig postgresSourceConfig) {
-        this.postgresSourceConfig = postgresSourceConfig;
+    public PSQLConnector(String workflowId, String taskId, String integrationID, Configs configs, String connectorArgs) throws JsonProcessingException {
+        super(workflowId, taskId, integrationID, configs);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> connectorConfigs = objectMapper.readValue(connectorArgs, new TypeReference<Map<String, Object>>() {
+        });
+
+        this.postgresSourceConfig = new PostgresSourceConfig(connectorConfigs);
     }
 
 
     protected DebeziumEngine<RecordChangeEvent<SourceRecord>> createDebeziumEngine() {
-        return DebeziumEngine.create(ChangeEventFormat.of(Connect.class))
+        engine = DebeziumEngine.create(ChangeEventFormat.of(Connect.class))
                 .using(getDebeziumProperties())
                 .notifying(new PSQLRecordProcessor())
                 .using(this::debeziumShutdownCallback)
                 .build();
-    }
-
-    public void run() {
-        try {
-            System.out.println("ANUBHAV RUNNING");
-            createDebeziumEngine().run();
-            System.out.println("ANUBHAV RUNNING...");
-        } catch (Exception e) {
-            System.out.printf("EXCEPTION: %s%n", e.getMessage());
-        }
-
+        return engine;
     }
 
     protected Properties getDebeziumProperties() {
@@ -61,7 +64,7 @@ public class PSQLConnector {
                 DebeziumConstants.DATABASE_PASSWORD_CONFIG, postgresSourceConfig.getDBPassword());
         properties.setProperty(
                 DebeziumConstants.DATABASE_NAME_CONFIG, postgresSourceConfig.getDBName());
-        properties.setProperty(DebeziumConstants.INCLUDED_TABLES_CONFIG, "test_table_2");
+        properties.setProperty(DebeziumConstants.INCLUDED_TABLES_CONFIG, "public.test_table_2");
 
         properties.setProperty(
                 DebeziumConstants.REPLICATION_SLOT_NAME_CONFIG,
@@ -88,8 +91,8 @@ public class PSQLConnector {
 
 //        properties.setProperty(
 //                DebeziumConstants.PROPAGATE_COLUMN_INFO_CONFIG, getColumnInfoPropagationRegex());
-
-        properties.setProperty("offset.storage.file.filename", "/Users/anubhavshrivastava/code/cf_demo/offsets/data");
+        properties.setProperty("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore");
+        properties.setProperty("offset.storage.file.filename", "/tmp/offsets.dat");
         properties.setProperty(
                 DebeziumConstants.OFFSET_FLUSH_INTERVAL_CONFIG, String.valueOf(5 * 1000));
 
@@ -104,5 +107,20 @@ public class PSQLConnector {
         if (Objects.nonNull(error)) {
             System.out.printf("ERROR: Debezium engine stopped with error: %o %n", error);
         }
+    }
+
+    public void dataPullStart() {
+        try {
+            createDebeziumEngine().run();
+        } catch (Exception e) {
+            System.out.printf("EXCEPTION: %s%n", e.getMessage());
+        }
+    }
+
+    public void stopConnector() throws IOException {
+        super.stopConnector();
+        System.out.println("Closing PSQL Connector Engine");
+        engine.close();
+        System.exit(0);
     }
 }
